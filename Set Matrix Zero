@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+
+void setZeros(vector<vector<int>> &matrix)
+{
+	int row=matrix.size();
+	int col=matrix[0].size();
+	queue<pair<int,int>> q;
+	for(int i=0;i<row;i++){
+		for(int j=0;j<col;j++){
+			if(matrix[i][j]==0){
+				q.push(make_pair(i,j));
+			}
+		}
+	}
+
+	while(!q.empty()){
+		int r=q.front().first;
+		int c=q.front().second;
+		q.pop();
+		for(int i=0;i<col;i++){
+			matrix[r][i]=0;
+		}
+		for(int j=0;j<row;j++){
+			matrix[j][c]=0;
+		}
+	}
+}
