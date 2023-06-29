@@ -1,0 +1,19 @@
+#include <bits/stdc++.h> 
+int findMinimumCoins(int amount) 
+{
+    int arr[9]={1000,500,100,50,20,10,5,2,1};
+    int ptr=0;
+    int count=0;
+    while(amount>0){
+        if(arr[ptr]>amount){
+            ptr++;
+        }
+        else{
+            int coins=amount/arr[ptr];
+            count+=coins;
+            amount=amount-arr[ptr]*coins;
+            ptr++;
+        }
+    }
+    return count;
+}
