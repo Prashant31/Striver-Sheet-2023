@@ -1,0 +1,24 @@
+ bool isSafe(int node,int color[],bool graph[101][101],int n,int col){
+        for(int k=0;k<n;k++){
+            if(k!=node and graph[k][node]==1 and color[k]==col) return false;
+        }
+        return true;
+    }
+    
+    bool solve(bool graph[101][101],int n,int m,int color[],int node){
+        if(node==n) return true;
+        
+        for(int i=1;i<=m;i++){
+            if(isSafe(node,color,graph,n,i)){
+                color[node]=i;
+                if(solve(graph,n,m,color,node+1)) return true;
+            }
+        }
+        return false;
+    }
+    
+    bool graphColoring(bool graph[101][101], int m, int n) {
+        int color[n]={0};
+        if(solve(graph,n,m,color,0)) return true;
+        return false;
+    }
